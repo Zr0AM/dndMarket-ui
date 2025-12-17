@@ -1,0 +1,45 @@
+<button (click)="clearAll()" class="btn btn-secondary mb-2">Clear All</button>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      @for (col of columns; track col) {
+        <th>
+          <div (click)="sort(col.field)" style="cursor: pointer;">
+            {{ col.header }}
+            @if (sortField === col.field) {
+              <span>{{ sortDirection === 'asc' ? '▲' : '▼' }}</span>
+            }
+          </div>
+          <select
+            [(ngModel)]="filterValues[$any(col.field)]"
+            (change)="applyFiltersAndSearch()"
+            (click)="$event.stopPropagation()"
+            class="form-control form-control-sm"
+          >
+            <option value="">All</option>
+            @for (value of uniqueColumnValues[$any(col.field)]; track value) {
+              <option [value]="value">{{ value }}</option>
+            }
+          </select>
+          <input
+            type="text"
+            [(ngModel)]="searchValues[$any(col.field)]"
+            (input)="applyFiltersAndSearch()"
+            (click)="$event.stopPropagation()"
+            placeholder="Search"
+            class="form-control form-control-sm mt-1"
+          />
+        </th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of processedData; track item) {
+      <tr>
+        @for (col of columns; track col) {
+          <td>{{ item[col.field] }}</td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>

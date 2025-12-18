@@ -8,7 +8,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "pages:deploy": "npm run build && wrangler pages deploy"
+    "pages:deploy": "npm run build && wrangler pages deploy --config wrangler.toml"
   },
   "prettier": {
     "printWidth": 100,

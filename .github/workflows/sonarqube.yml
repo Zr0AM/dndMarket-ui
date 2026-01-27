@@ -23,6 +23,8 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+      - name: Test
+        run: npm run test
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v6
         env:

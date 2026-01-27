@@ -3,6 +3,7 @@ import { ApiService } from '../api/api';
 import { ItemModel } from '../../models/item.model';
 import { environment } from '../../environments/environment';
 import { GridComponent } from '../grid-component/grid.component';
+import { SnackbarService } from '../snackbar';
 
 @Component({
   selector: 'app-home-component',
@@ -12,7 +13,7 @@ import { GridComponent } from '../grid-component/grid.component';
   styleUrl: './home-component.scss',
 })
 export class HomeComponent implements OnInit {
-  private apiEndpoint: string = environment.apiItems;
+  private readonly apiEndpoint: string = environment.apiItems;
 
   itemList: ItemModel[] = [];
   itemColumns: { field: keyof ItemModel; header: string }[] = [
@@ -23,14 +24,20 @@ export class HomeComponent implements OnInit {
   ];
 
   constructor(
-    private _api: ApiService,
-    private cdr: ChangeDetectorRef
+    private readonly _api: ApiService,
+    private readonly cdr: ChangeDetectorRef,
+    private readonly snackbarService: SnackbarService
   ) { }
 
   ngOnInit(): void {
-    this._api.get<ItemModel[]>(this.apiEndpoint).subscribe(data => {
-      this.itemList = data;
-      this.cdr.detectChanges();
-    })
+    this._api.get<ItemModel[]>(this.apiEndpoint).subscribe({
+      next: (data) => {
+        this.itemList = data;
+        this.cdr.detectChanges();
+      },
+      error: () => {
+        this.snackbarService.show('Data is not currently available');
+      }
+    });
   }
 }

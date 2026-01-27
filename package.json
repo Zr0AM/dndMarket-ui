@@ -1,13 +1,15 @@
 {
-  "name": "dnd-market-ui-new",
+  "name": "dnd-market-ui",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "ng serve --configuration=development",
+    "start:prod": "ng serve --configuration=production",
+    "build": "ng build --configuration=production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:dndMarket-ui-new": "node dist/dndMarket-ui-new/server/server.mjs"
+    "pages:deploy": "npm run build && wrangler pages deploy dist/dndMarket-ui/browser --project-name=dndmarket-ui",
+    "pages:dev": "wrangler pages dev dist/dndMarket-ui/browser"
   },
   "prettier": {
     "printWidth": 100,
@@ -29,10 +31,7 @@
     "@angular/core": "^21.0.0",
     "@angular/forms": "^21.0.0",
     "@angular/platform-browser": "^21.0.0",
-    "@angular/platform-server": "^21.0.0",
     "@angular/router": "^21.0.0",
-    "@angular/ssr": "^21.0.0",
-    "express": "^5.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
@@ -40,10 +39,9 @@
     "@angular/build": "^21.0.0",
     "@angular/cli": "^21.0.0",
     "@angular/compiler-cli": "^21.0.0",
-    "@types/express": "^5.0.1",
-    "@types/node": "^20.17.19",
     "jsdom": "^27.1.0",
     "typescript": "~5.9.2",
-    "vitest": "^4.0.8"
+    "vitest": "^4.0.8",
+    "wrangler": "^3.57.0"
   }
 }

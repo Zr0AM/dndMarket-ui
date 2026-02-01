@@ -1,7 +1,7 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/1.0/config/configuration-file.html
 
-module.exports = function karma (config) {
+module.exports = function (config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
@@ -24,7 +24,7 @@ module.exports = function karma (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('node:path').join(__dirname, './coverage/dnd-market-ui'),
+      dir: require('path').join(__dirname, './coverage/dnd-market-ui'),
       subdir: '.',
       reporters: [
         { type: 'html' },

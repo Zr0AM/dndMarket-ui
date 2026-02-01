@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { CommonUtil } from './common-util';
 
 describe('CommonUtil', () => {

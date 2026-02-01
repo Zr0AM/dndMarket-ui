@@ -75,4 +75,10 @@ describe('SnackbarService', () => {
     jasmine.clock().tick(1000);
     expect(service.snackbarState()).toBeNull();
   });
+
+  it('should hide message without timeout', () => {
+    service.show('Permanent', 0);
+    service.hide();
+    expect(service.snackbarState()).toBeNull();
+  });
 });

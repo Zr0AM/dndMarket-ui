@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
-import { describe, it, expect, beforeEach } from 'vitest';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 

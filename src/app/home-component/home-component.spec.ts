@@ -4,7 +4,6 @@ import { HomeComponent } from './home-component';
 import { ApiService } from '../api/api';
 import { SnackbarService } from '../snackbar/snackbar.service';
 import { of, throwError } from 'rxjs';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { ItemModel } from '../../models/item.model';
 
 describe('HomeComponent', () => {
@@ -14,12 +13,8 @@ describe('HomeComponent', () => {
   let snackbarServiceSpy: any;
 
   beforeEach(async () => {
-    apiServiceSpy = {
-      get: vi.fn()
-    };
-    snackbarServiceSpy = {
-      show: vi.fn()
-    };
+    apiServiceSpy = jasmine.createSpyObj('ApiService', ['get']);
+    snackbarServiceSpy = jasmine.createSpyObj('SnackbarService', ['show']);
 
     await TestBed.configureTestingModule({
       imports: [HomeComponent, HttpClientTestingModule],
@@ -31,7 +26,7 @@ describe('HomeComponent', () => {
     .compileComponents();
 
     // Default mock behavior
-    apiServiceSpy.get.mockReturnValue(of([]));
+    apiServiceSpy.get.and.returnValue(of([]));
 
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
@@ -59,7 +54,7 @@ describe('HomeComponent', () => {
         itemSelected: false
       }
     ];
-    apiServiceSpy.get.mockReturnValue(of(mockItems));
+    apiServiceSpy.get.and.returnValue(of(mockItems));
 
     fixture.detectChanges(); // triggers ngOnInit
 
@@ -67,7 +62,7 @@ describe('HomeComponent', () => {
   });
 
   it('should show snackbar on api error', () => {
-    apiServiceSpy.get.mockReturnValue(throwError(() => new Error('API Error')));
+    apiServiceSpy.get.and.returnValue(throwError(() => new Error('API Error')));
 
     fixture.detectChanges(); // triggers ngOnInit
 

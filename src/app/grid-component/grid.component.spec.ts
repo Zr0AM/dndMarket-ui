@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GridComponent } from './grid.component';
-import { describe, it, expect, beforeEach } from 'vitest';
 
 interface TestData {
   id: number;

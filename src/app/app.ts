@@ -4,6 +4,7 @@ import { SnackbarComponent } from './snackbar';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet, SnackbarComponent],
   templateUrl: './app.html',
   styleUrl: './app.scss'

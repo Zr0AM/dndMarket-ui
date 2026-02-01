@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ApiService } from './api';
-import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { environment } from '../../environments/environment';
 
 describe('ApiService', () => {

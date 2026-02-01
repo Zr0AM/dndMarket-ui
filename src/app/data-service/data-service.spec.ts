@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DataService } from './data-service';
 import { ApiService } from '../api/api';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { of } from 'rxjs';
 
 describe('DataService', () => {
@@ -24,7 +23,7 @@ describe('DataService', () => {
 
   it('should get data and update rows', () => {
     const dummyData = [{ id: 1, name: 'Test' }];
-    vi.spyOn(apiService, 'get').mockReturnValue(of(dummyData));
+    spyOn(apiService, 'get').and.returnValue(of(dummyData));
 
     service.getData('/test');
 

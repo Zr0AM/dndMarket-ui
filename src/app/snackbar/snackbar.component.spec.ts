@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SnackbarComponent } from './snackbar.component';
 import { SnackbarService } from './snackbar.service';
-import { describe, it, expect, beforeEach } from 'vitest';
 
 describe('SnackbarComponent', () => {
   let component: SnackbarComponent;

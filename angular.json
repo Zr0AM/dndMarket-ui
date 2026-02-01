@@ -18,7 +18,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular/build:application",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/dndMarket-ui",
             "browser": "src/main.ts",
@@ -65,7 +65,7 @@
           "defaultConfiguration": "development"
         },
         "serve": {
-          "builder": "@angular/build:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
               "buildTarget": "dndMarket-ui:build:production"
